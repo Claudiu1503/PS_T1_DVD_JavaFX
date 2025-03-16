@@ -14,12 +14,16 @@ public class FilmREPO {
 
     public List<Film> getAllFilms(String type) throws SQLException {
         List<Film> films = new ArrayList<>();
-        String query = "SELECT * FROM Films";
+        String query = "SELECT f.*, d.name AS director_name, w.name AS writer_name, p.name AS producer_name " +
+                "FROM Films f " +
+                "JOIN Members d ON f.director_id = d.id " +
+                "JOIN Members w ON f.writer_id = w.id " +
+                "JOIN Members p ON f.producer_id = p.id";
 
-        if(type != null && !type.isEmpty()){
-            query += " WHERE type = ?";
-        }else{
-            query += " ORDER BY type";
+        if (type != null && !type.isEmpty()) {
+            query += " WHERE f.type = ?";
+        } else {
+            query += " ORDER BY f.type";
         }
 
         try (Connection connection = DatabaseREPO.getConnection();
@@ -30,7 +34,6 @@ public class FilmREPO {
             }
 
             try (ResultSet resultSet = statement.executeQuery()) {
-
                 while (resultSet.next()) {
                     Film film = new Film();
                     film.setId(resultSet.getInt("id"));
@@ -41,6 +44,9 @@ public class FilmREPO {
                     film.setDirectorId(resultSet.getInt("director_id"));
                     film.setWriterId(resultSet.getInt("writer_id"));
                     film.setProducerId(resultSet.getInt("producer_id"));
+                    film.setDirectorName(resultSet.getString("director_name"));
+                    film.setWriterName(resultSet.getString("writer_name"));
+                    film.setProducerName(resultSet.getString("producer_name"));
 
                     // Fetch Cast
                     film.setCast(castRepo.getFilmCast(film.getId()));
@@ -54,6 +60,7 @@ public class FilmREPO {
         }
         return films;
     }
+
 
     public List<Film> getFilmsByCategory(String category) throws SQLException{
         List<Film> films = new ArrayList<>();

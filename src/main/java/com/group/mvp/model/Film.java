@@ -20,6 +20,9 @@ public class Film {
     private FilmCategory category;
     private List<Cast> cast;
     private List<FilmImage> images;
+    private SimpleStringProperty directorName;
+    private SimpleStringProperty writerName;
+    private SimpleStringProperty producerName;
 
     // Converters
     private static final FilmTypeConverter typeConverter = new FilmTypeConverter();
@@ -32,11 +35,15 @@ public class Film {
         this.writerId = new SimpleIntegerProperty(1);
         this.title = new SimpleStringProperty("UNDEFINED");
         this.year = new SimpleIntegerProperty(1000);
-        this.type = FilmType.UNDEFINED; //default
-        this.category = FilmCategory.UNDEFINED; // default
+        this.type = FilmType.UNDEFINED;
+        this.category = FilmCategory.UNDEFINED;
         this.cast = new ArrayList<>();
         this.images = new ArrayList<>();
+        this.directorName = new SimpleStringProperty("Unknown");
+        this.writerName = new SimpleStringProperty("Unknown");
+        this.producerName = new SimpleStringProperty("Unknown");
     }
+
     public Film(SimpleIntegerProperty id,
                 SimpleIntegerProperty directorId,
                 SimpleIntegerProperty producerId,
@@ -46,8 +53,10 @@ public class Film {
                 SimpleStringProperty type,
                 SimpleStringProperty category,
                 List<Cast> cast,
-                List<FilmImage> images
-    ) {
+                List<FilmImage> images,
+                SimpleStringProperty directorName,
+                SimpleStringProperty writerName,
+                SimpleStringProperty producerName) {
         this.id = id;
         this.directorId = directorId;
         this.producerId = producerId;
@@ -58,6 +67,9 @@ public class Film {
         this.category = categoryConverter.fromString(category.get());
         this.cast = cast;
         this.images = images;
+        this.directorName = directorName;
+        this.writerName = writerName;
+        this.producerName = producerName;
     }
 
     // getters / setters
@@ -76,18 +88,28 @@ public class Film {
     public int getDirectorId() {
         return directorId.get();
     }
-    public SimpleIntegerProperty directorIdProperty(){
+
+    public SimpleIntegerProperty directorIdProperty() {
         return directorId;
     }
+
     public void setDirectorId(Integer directorId) {
         this.directorId.set(directorId);
+    }
+
+    public String getDirectorName() {
+        return directorName.get();
+    }
+
+    public void setDirectorName(String directorName) {
+        this.directorName.set(directorName);
     }
 
     public int getProducerId() {
         return producerId.get();
     }
 
-    public SimpleIntegerProperty producerIdProperty(){
+    public SimpleIntegerProperty producerIdProperty() {
         return producerId;
     }
 
@@ -95,16 +117,32 @@ public class Film {
         this.producerId.set(producerId);
     }
 
+    public String getProducerName() {
+        return producerName.get();
+    }
+
+    public void setProducerName(String producerName) {
+        this.producerName.set(producerName);
+    }
+
     public int getWriterId() {
         return writerId.get();
     }
 
-    public SimpleIntegerProperty writerIdProperty(){
+    public SimpleIntegerProperty writerIdProperty() {
         return writerId;
     }
 
     public void setWriterId(Integer writerId) {
         this.writerId.set(writerId);
+    }
+
+    public String getWriterName() {
+        return writerName.get();
+    }
+
+    public void setWriterName(String writerName) {
+        this.writerName.set(writerName);
     }
 
     public String getTitle() {
@@ -134,9 +172,11 @@ public class Film {
     public SimpleStringProperty typeProperty() {
         return new SimpleStringProperty(typeConverter.toString(type));
     }
+
     public String getType() {
         return typeConverter.toString(type);
     }
+
     public void setType(String type) {
         this.type = typeConverter.fromString(type);
     }
@@ -144,6 +184,7 @@ public class Film {
     public SimpleStringProperty categoryProperty() {
         return new SimpleStringProperty(categoryConverter.toString(category));
     }
+
     public String getCategory() {
         return categoryConverter.toString(category);
     }
@@ -170,7 +211,7 @@ public class Film {
 
     public String getActorNames() {
         return cast.stream()
-                .map(Cast::getActorName) // Assuming Cast has a method getActorName()
+                .map(Cast::getActorName)
                 .collect(Collectors.joining(", "));
     }
 }

@@ -60,23 +60,20 @@ public class FilmView implements IView<Film>{
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         setEditable(categoryColumn);
 
-        TableColumn<Film, Integer> idDirectorColumn = new TableColumn<>("Director ID");
-        idDirectorColumn.setCellValueFactory(new PropertyValueFactory<>("directorId"));
-        setEditableInteger(idDirectorColumn);
+        TableColumn<Film, String> directorNameColumn = new TableColumn<>("Director");
+        directorNameColumn.setCellValueFactory(new PropertyValueFactory<>("directorName"));
 
-        TableColumn<Film, Integer> idWriterColumn = new TableColumn<>("Writer ID");
-        idWriterColumn.setCellValueFactory(new PropertyValueFactory<>("writerId"));
-        setEditableInteger(idWriterColumn);
+        TableColumn<Film, String> writerNameColumn = new TableColumn<>("Writer");
+        writerNameColumn.setCellValueFactory(new PropertyValueFactory<>("writerName"));
 
-        TableColumn<Film, Integer> idProducerColumn = new TableColumn<>("Producer ID");
-        idProducerColumn.setCellValueFactory(new PropertyValueFactory<>("producerId"));
-        setEditableInteger(idProducerColumn);
+        TableColumn<Film, String> producerNameColumn = new TableColumn<>("Producer");
+        producerNameColumn.setCellValueFactory(new PropertyValueFactory<>("producerName"));
 
         TableColumn<Film, String> actorNamesColumn = new TableColumn<>("Actors");
         actorNamesColumn.setCellValueFactory(new PropertyValueFactory<>("actorNames"));
 
         // Add columns to table
-        filmTableView.getColumns().addAll(idColumn, titleColumn, yearColumn, typeColumn, categoryColumn, idDirectorColumn, idWriterColumn, idProducerColumn, actorNamesColumn);
+        filmTableView.getColumns().addAll(idColumn, titleColumn, yearColumn, typeColumn, categoryColumn, directorNameColumn, writerNameColumn, producerNameColumn, actorNamesColumn);
     }
 
 
