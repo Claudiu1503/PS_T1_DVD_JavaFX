@@ -21,7 +21,7 @@ public class GUI extends Application {
 
         tabPane.getTabs().addAll(memberTab, filmTab);
 
-        Scene scene = new Scene(tabPane, 800, 450);
+        Scene scene = new Scene(tabPane, 1200, 450);
         String css = getClass().getResource("/styles.css").toExternalForm();
         if (css != null) {
             scene.getStylesheets().add(css);
