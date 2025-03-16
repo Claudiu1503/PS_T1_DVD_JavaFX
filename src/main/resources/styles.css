@@ -1,0 +1,75 @@
+/* styles.css */
+.root {
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-background-color: #f0f0f0;
+}
+
+.button {
+    -fx-background-color: #c59aff;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 5, 0, 0, 1);
+    -fx-transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: #ae8cfa;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 100px;
+    -fx-tab-max-width: 200px;
+    -fx-tab-min-height: 40px;
+    -fx-tab-max-height: 40px;
+    -fx-background-color: #ffffff;
+}
+
+.tab {
+    -fx-background-color: #b585ff;
+    -fx-text-fill: white;
+}
+
+.tab:selected {
+    -fx-background-color: #b0efff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.vbox {
+    -fx-opacity: 0;
+    -fx-transition: opacity 1s ease-in-out;
+}
+
+.vbox:hover {
+    -fx-opacity: 1;
+}
+
+.button {
+    -fx-translate-x: -100%;
+    -fx-transition: translate-x 0.5s ease-in-out;
+}
+
+.button:hover {
+    -fx-translate-x: 0;
+}
