@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FilmRepo {
-    CastRepo castRepo = new CastRepo();
-    FilmImageRepo filmImageRepo = new FilmImageRepo();
-    MemberRepo memberRepo = new MemberRepo();
+public class FilmREPO {
+    CastREPO castRepo = new CastREPO();
+    FilmImageREPO filmImageRepo = new FilmImageREPO();
+    MemberREPO memberRepo = new MemberREPO();
 
     public List<Film> getAllFilms(String type) throws SQLException {
         List<Film> films = new ArrayList<>();
@@ -22,7 +22,7 @@ public class FilmRepo {
             query += " ORDER BY type";
         }
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             if (type != null && !type.isEmpty()) {
@@ -59,7 +59,7 @@ public class FilmRepo {
         List<Film> films = new ArrayList<>();
         String query = "SELECT * FROM Films WHERE category = ?";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, category);
@@ -94,7 +94,7 @@ public class FilmRepo {
         List<Film> films = new ArrayList<>();
         String query = "SELECT * FROM Films WHERE year = ?";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, year);
@@ -137,7 +137,7 @@ public class FilmRepo {
         List<Film> films = new ArrayList<>();
         String query = "SELECT * FROM films WHERE id IN (" + idsString +")";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -167,7 +167,7 @@ public class FilmRepo {
     }
     public void addFilm(Film film) throws SQLException {
         String query = "INSERT INTO Films (title, year, type, category, director_id, writer_id, producer_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, film.getTitle());
@@ -194,7 +194,7 @@ public class FilmRepo {
         String query = "UPDATE Films SET title = ?, year = ?, type = ?, category = ?," +
                 " director_id = ?, writer_id = ?, producer_id = ? WHERE id = ?";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, film.getTitle());
@@ -220,7 +220,7 @@ public class FilmRepo {
     public void deleteFilm(int id) throws SQLException {
         String query = "DELETE FROM Films WHERE id = ?";
 
-        try (Connection connection = Repository.getConnection()) {
+        try (Connection connection = DatabaseREPO.getConnection()) {
             // Delete Member
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, id);

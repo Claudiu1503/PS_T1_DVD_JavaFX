@@ -1,6 +1,6 @@
 package com.group.mvp.model;
 
-import com.group.mvp.model.enum_converter.EnumConverter;
+import com.group.mvp.model.enumCNV.EnumConverter;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 

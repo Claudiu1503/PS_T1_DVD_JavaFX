@@ -2,7 +2,7 @@ package com.group.mvp.presenter;
 
 
 import com.group.mvp.model.Film;
-import com.group.mvp.model.repository.FilmRepo;
+import com.group.mvp.model.repository.FilmREPO;
 import com.group.mvp.view.FilmView;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
@@ -14,11 +14,11 @@ import java.util.List;
 
 public class FilmPresenter {
     private FilmView view;
-    private FilmRepo filmRepo;
+    private FilmREPO filmRepo;
 
     public FilmPresenter(FilmView view) {
         this.view = view;
-        this.filmRepo = new FilmRepo();
+        this.filmRepo = new FilmREPO();
         loadFilms();
     }
 

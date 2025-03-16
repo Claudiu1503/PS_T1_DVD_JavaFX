@@ -6,15 +6,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CastRepo {
-    public CastRepo() {
+public class CastREPO {
+    public CastREPO() {
     }
     protected List<Cast> getFilmCast(int filmId) throws SQLException {
         List<Cast> cast = new ArrayList<>();
         String query = "SELECT c.actor_id, c.role FROM Casts c " +
                 "JOIN Members m ON c.actor_id = m.id WHERE c.film_id = ?";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, filmId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -29,7 +29,7 @@ public class CastRepo {
         List<Integer> filmIDs = new ArrayList<>();
         String query = "SELECT film_id FROM Casts WHERE actor_id = ?";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, idActor);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -43,7 +43,7 @@ public class CastRepo {
 
     protected void addCast(int filmId, List<Cast> cast) throws SQLException{
         String query = "INSERT INTO Casts (film_id, actor_id, role) VALUES (?, ?, ?)";
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             for (Cast entry : cast) {
                 statement.setInt(1, filmId);
@@ -57,7 +57,7 @@ public class CastRepo {
 
     public void deleteCast(int idFilm) throws SQLException{
         String query = "DELETE FROM Casts WHERE film_id = ?";
-        try (Connection connection = Repository.getConnection()) {
+        try (Connection connection = DatabaseREPO.getConnection()) {
             // Delete Member
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, idFilm);

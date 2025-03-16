@@ -1,7 +1,7 @@
 package com.group.mvp.presenter;
 
 import com.group.mvp.model.Member;
-import com.group.mvp.model.repository.MemberRepo;
+import com.group.mvp.model.repository.MemberREPO;
 import com.group.mvp.view.MemberView;
 
 import java.sql.SQLException;
@@ -9,11 +9,11 @@ import java.util.List;
 
 public class MemberPresenter {
     private MemberView view;  // The View interface reference
-    private MemberRepo memberRepo;
+    private MemberREPO memberRepo;
 
     public MemberPresenter(MemberView view) {
         this.view = view;
-        this.memberRepo = new MemberRepo(); // Initialize the repository
+        this.memberRepo = new MemberREPO(); // Initialize the repository
         loadMembers();
     }
 

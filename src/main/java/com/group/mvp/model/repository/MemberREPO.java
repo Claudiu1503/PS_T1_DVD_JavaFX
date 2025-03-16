@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberRepo {
+public class MemberREPO {
     public List<Member> getAllMembers(String baseType) throws SQLException {
         List<Member> members = new ArrayList<>();
         String query = "SELECT * FROM Members";
@@ -15,7 +15,7 @@ public class MemberRepo {
             query += " WHERE baseType = ?";
         }
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             if (baseType != null && !baseType.isEmpty()) {
@@ -41,7 +41,7 @@ public class MemberRepo {
         int id = 0;
         String query = "SELECT id FROM Members WHERE name = ? LIMIT 1";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, actorName);
@@ -59,7 +59,7 @@ public class MemberRepo {
     public void addMember(Member member) throws SQLException {
         String query = "INSERT INTO Members (name, birthdate, baseType, image) VALUES (?, ?, ?, ?)";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, member.getName());
@@ -74,7 +74,7 @@ public class MemberRepo {
     public void updateMember(Member member) throws SQLException {
         String query = "UPDATE Members SET name = ?, birthdate = ?, baseType = ?, image = ? WHERE id = ?";
 
-        try (Connection connection = Repository.getConnection();
+        try (Connection connection = DatabaseREPO.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, member.getName());
@@ -90,7 +90,7 @@ public class MemberRepo {
     public void deleteMember(int id) throws SQLException {
         String query = "DELETE FROM Members WHERE id = ?";
 
-        try (Connection connection = Repository.getConnection()) {
+        try (Connection connection = DatabaseREPO.getConnection()) {
             // Delete Member
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, id);

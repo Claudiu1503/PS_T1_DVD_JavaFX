@@ -1,4 +1,4 @@
-package com.group.mvp.model.enum_converter;
+package com.group.mvp.model.enumCNV;
 
 import com.group.mvp.model.FilmType;
 
