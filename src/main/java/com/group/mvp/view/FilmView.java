@@ -32,7 +32,7 @@ public class FilmView implements IView<Film>{
         view = new VBox(10, filmTableView);
         presenter = new FilmPresenter(this);
     }
-    private void setupTable(){
+    private void setupTable() {
         // Enable editing the table
         filmTableView.setEditable(true);
 
@@ -72,9 +72,14 @@ public class FilmView implements IView<Film>{
         idProducerColumn.setCellValueFactory(new PropertyValueFactory<>("producerId"));
         setEditableInteger(idProducerColumn);
 
+        TableColumn<Film, String> actorNamesColumn = new TableColumn<>("Actors");
+        actorNamesColumn.setCellValueFactory(new PropertyValueFactory<>("actorNames"));
+
         // Add columns to table
-        filmTableView.getColumns().addAll(idColumn, titleColumn, yearColumn, typeColumn, categoryColumn, idDirectorColumn, idWriterColumn, idProducerColumn);
+        filmTableView.getColumns().addAll(idColumn, titleColumn, yearColumn, typeColumn, categoryColumn, idDirectorColumn, idWriterColumn, idProducerColumn, actorNamesColumn);
     }
+
+
 
     // Sets context menu with different options
     private void setContextMenuOptions(){

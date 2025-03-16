@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Film {
     private SimpleIntegerProperty id;
@@ -165,5 +166,11 @@ public class Film {
 
     public void setImages(List<FilmImage> images) {
         this.images = images;
+    }
+
+    public String getActorNames() {
+        return cast.stream()
+                .map(Cast::getActorName) // Assuming Cast has a method getActorName()
+                .collect(Collectors.joining(", "));
     }
 }
