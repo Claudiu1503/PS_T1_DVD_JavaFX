@@ -22,7 +22,6 @@ import java.util.List;
 
 public class FilmView implements IFilmView {
     private FilmPresenter presenter;
-    private TableView<Film> filmTableView;
     private VBox view;
 
     public FilmView() {
@@ -149,7 +148,7 @@ public class FilmView implements IFilmView {
         // Show the context menu when right-clicking on a row in the table
         filmTableView.setContextMenu(contextMenu);
     }
-
+    private TableView<Film> filmTableView;
     // Sets Edit entry event
     private void setEditable(TableColumn<Film, String> column) {
         column.setCellFactory(TextFieldTableCell.forTableColumn());

@@ -16,7 +16,6 @@ import java.util.List;
 
 public class MemberView implements IMemberView {
     private MemberPresenter presenter;
-    private TableView<Member> memberTableView;
     private VBox view;
 
     public MemberView() {
@@ -58,7 +57,7 @@ public class MemberView implements IMemberView {
         memberTableView.getColumns().addAll(idColumn, nameColumn, birthdateColumn, baseTypeColumn, imageColumn);
 
     }
-
+    private TableView<Member> memberTableView;
     // Sets context menu with different options
     private void setContextMenuOptions(){
         ContextMenu contextMenu = new ContextMenu();
