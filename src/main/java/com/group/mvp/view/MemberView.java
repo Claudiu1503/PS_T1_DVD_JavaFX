@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class MemberView  {
+public class MemberView implements IMemberView {
     private MemberPresenter presenter;
     private TableView<Member> memberTableView;
     private VBox view;
@@ -139,7 +139,7 @@ public class MemberView  {
         });
     }
 
-//    @Override
+    @Override
     public void setItemList(List<Member> Members) {
         memberTableView.setItems(FXCollections.observableArrayList(Members));
         memberTableView.refresh();
@@ -171,7 +171,7 @@ public class MemberView  {
         imageStage.show();
     }
 
-//    @Override
+    @Override
     public void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("ERROR");
@@ -181,11 +181,11 @@ public class MemberView  {
         alert.showAndWait();
     }
 
-//    @Override
+    @Override
     public Member getSelectedItem() {
         return memberTableView.getSelectionModel().getSelectedItem();
     }
-
+    @Override
     public VBox getView() {
         return view;
     }

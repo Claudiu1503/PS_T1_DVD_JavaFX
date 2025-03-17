@@ -20,7 +20,7 @@ import javafx.util.converter.IntegerStringConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilmView {
+public class FilmView implements IFilmView {
     private FilmPresenter presenter;
     private TableView<Film> filmTableView;
     private VBox view;
@@ -198,7 +198,7 @@ public class FilmView {
         });
     }
 
-//    @Override
+    @Override
     public void setItemList(List<Film> Films) {
         filmTableView.setItems(FXCollections.observableArrayList(Films));
         filmTableView.refresh();
@@ -416,7 +416,7 @@ public class FilmView {
         roleStage.show();
     }
 
-//    @Override
+    @Override
     public void showError(String message) {
         // Create an alert of type ERROR
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -427,7 +427,7 @@ public class FilmView {
         // Show the alert
         alert.showAndWait();
     }
-
+    @Override
     public void showConfirmation(String message) {
         // Create an alert of type ERROR
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -439,11 +439,11 @@ public class FilmView {
         alert.showAndWait();
     }
 
-//    @Override
+    @Override
     public Film getSelectedItem() {
         return filmTableView.getSelectionModel().getSelectedItem();
     }
-
+    @Override
     public VBox getView() {
         return view;
     }
