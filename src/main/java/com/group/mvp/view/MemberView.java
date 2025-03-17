@@ -110,7 +110,8 @@ public class MemberView implements IMemberView {
     }
 
     // Sets Edit entry event
-    private void setEditable(TableColumn<Member, String> column) {
+    @Override
+    public void setEditable(TableColumn<Member, String> column) {
         column.setCellFactory(TextFieldTableCell.forTableColumn());
         column.setOnEditCommit(event -> {
             Member member = event.getRowValue();
@@ -144,8 +145,8 @@ public class MemberView implements IMemberView {
         memberTableView.setItems(FXCollections.observableArrayList(Members));
         memberTableView.refresh();
     }
-
-    private void showImagePopup(String path) {
+    @Override
+    public void showImagePopup(String path) {
         Stage imageStage = new Stage();
         imageStage.setTitle("Image Preview");
 
@@ -185,6 +186,8 @@ public class MemberView implements IMemberView {
     public Member getSelectedItem() {
         return memberTableView.getSelectionModel().getSelectedItem();
     }
+
+
     @Override
     public VBox getView() {
         return view;

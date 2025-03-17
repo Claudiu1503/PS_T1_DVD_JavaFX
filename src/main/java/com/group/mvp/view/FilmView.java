@@ -279,8 +279,8 @@ public class FilmView implements IFilmView {
         actorStage.setScene(scene);
         actorStage.show();
     }
-
-    private void showImagesPopup(Film film) {
+    @Override
+    public void showImagesPopup(Film film) {
         List<FilmImage> paths = new ArrayList<>(film.getImages());
         while (paths.size() < 3) {
             paths.add(new FilmImage(0, film.getId(), ""));
@@ -348,8 +348,8 @@ public class FilmView implements IFilmView {
         imageStage.setScene(scene);
         imageStage.show();
     }
-
-    private void showRolesTable(Film film) {
+    @Override
+    public void showRolesTable(Film film) {
         List<Cast> roles = film.getCast();
         Stage roleStage = new Stage();
         roleStage.setTitle("Film Roles");
