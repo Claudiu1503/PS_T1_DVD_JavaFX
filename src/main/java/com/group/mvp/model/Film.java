@@ -1,7 +1,7 @@
 package com.group.mvp.model;
 
-import com.group.mvp.model.enumCNV.FilmCategoryConverter;
-import com.group.mvp.model.enumCNV.FilmTypeConverter;
+import com.group.enumCNV.FilmCategoryConverter;
+import com.group.enumCNV.FilmTypeConverter;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 

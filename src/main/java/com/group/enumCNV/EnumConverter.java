@@ -1,4 +1,4 @@
-package com.group.mvp.model.enumCNV;
+package com.group.enumCNV;
 
 // Generic Interface for Enum Conversion
 public interface EnumConverter<T extends Enum<T>> {

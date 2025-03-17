@@ -1,4 +1,4 @@
-package com.group.mvp.model.enumCNV;
+package com.group.enumCNV;
 
 import com.group.mvp.model.FilmCategory;
 
